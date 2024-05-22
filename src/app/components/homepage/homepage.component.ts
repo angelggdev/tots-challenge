@@ -11,13 +11,14 @@ import { Client } from "src/app/entities/client";
 
 @Component({
     selector: 'app-homepage',
-    templateUrl: 'homepage.component.html'
+    templateUrl: 'homepage.component.html',
+    styleUrls: ['homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
     config: TotsTableConfig = {
         columns: [
-            new TotsStringColumn("firstname", "firstname", "Nombre"),
-            new TotsStringColumn("lastname", "lastname", "Apellido"),
+            new TotsStringColumn("firstname", "firstname", "First Name"),
+            new TotsStringColumn("lastname", "lastname", "Last Name"),
             new TotsStringColumn("email", "email", "Email"),
             new TotsIconButtonColumn("delete", "delete", "delete", "warn"),
             new TotsIconButtonColumn("edit", "edit", "edit", "warn"),
@@ -54,7 +55,7 @@ export class HomepageComponent implements OnInit {
     }
 
     addClient() {
-        this.dialog.open(EditModalComponent, {}).afterClosed().subscribe((result: Client) => {
+        this.dialog.open(EditModalComponent, { data: { title: 'Add client' }}).afterClosed().subscribe((result: Client) => {
             if (result) {
                 this.clientService.update({ ...result }).subscribe((result: any) => {
                     if (result.success) {
@@ -85,7 +86,7 @@ export class HomepageComponent implements OnInit {
     }
 
     private editItem(item: Client) {
-        this.dialog.open(EditModalComponent, { data: item }).afterClosed().subscribe((result: Client) => {
+        this.dialog.open(EditModalComponent, { data: { title: 'Edit client', data: item } }).afterClosed().subscribe((result: Client) => {
             if (result) {
                 this.clientService.update({ ...result, id: item.id }).subscribe((result: any) => {
                     if (result.success) {

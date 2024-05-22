@@ -6,7 +6,8 @@ import { Client } from "src/app/entities/client";
 
 @Component({
     selector: 'app-edit-modal',
-    templateUrl: 'edit-modal.component.html'
+    templateUrl: 'edit-modal.component.html',
+    styleUrls: ['edit-modal.component.scss']
 })
 export class EditModalComponent implements OnInit {
     @ViewChild('form') form: any;
@@ -14,7 +15,7 @@ export class EditModalComponent implements OnInit {
     fields = new Array<TotsFieldForm>();
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: Client
+        @Inject(MAT_DIALOG_DATA) public data: { title: string; data: Client; }
     ) { }
 
     ngOnInit(): void {
