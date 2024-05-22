@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { StringFieldComponent, TotsFieldForm } from "@tots/form";
 import { Validators } from "@angular/forms";
+
 import { Client } from "src/app/entities/client";
 
 @Component({
@@ -16,9 +17,13 @@ export class EditModalComponent implements OnInit {
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { title: string; data: Client; }
-    ) { }
+    ) {}
 
     ngOnInit(): void {
+        this.setFields();
+    }
+
+    private setFields() {
         this.fields = [
             { key: 'firstname', component: StringFieldComponent, label: 'Nombre', validators: [Validators.required], extra: null, errors: [{ name: 'required', message: 'You must enter a value' }] },
             { key: 'lastname', component: StringFieldComponent, label: 'Apellido', validators: [Validators.required], extra: null, errors: [{ name: 'required', message: 'You must enter a value' }] },

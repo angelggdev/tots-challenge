@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { TotsListResponse } from "@tots/core";
 import { TotsActionTable, TotsIconButtonColumn, TotsStringColumn, TotsTableConfig } from "@tots/table";
 import { delay, of } from "rxjs";
-import { ClientService } from "src/app/services/client.service";
 import { MatDialog } from '@angular/material/dialog';
+
+import { ClientService } from "src/app/services/client.service";
 import { DeleteModalComponent } from "./delete-modal/delete-modal.component";
 import { SuccessModalComponent } from "./success-modal/success-modal.component";
 import { EditModalComponent } from "./edit-modal/edit-modal.component";
